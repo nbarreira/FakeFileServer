@@ -31,4 +31,4 @@ filename,filesize
 ```
 where `filesize` represents the size of the file in bytes.
 
-If the environment variable FAKE_FILE_SERVER_FILE is not set, the server tries to load `files.csv`. If the csv file is not found, an empty file server is created.
+If the environment variable `FAKE_FILE_SERVER_FILE` is not set, the server tries to load `files.csv`. If the csv file is not found, an empty file server is created.
