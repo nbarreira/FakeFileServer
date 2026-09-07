@@ -26,7 +26,7 @@ files = dict()
 
 
 class Settings(BaseSettings):
-    fake_file_server_path: str = "./files.csv"
+    fake_file_server_file: str = "./files.csv"
 
 # Reads the file passed as an environment variable
 # and generates the fake filesystem.
@@ -55,8 +55,8 @@ def init_fake_file_system(filename: str):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info(
-        f"Loading fake server from file {settings.fake_file_server_path}")
-    init_fake_file_system(settings.fake_file_server_path)
+        f"Loading fake server from file {settings.fake_file_server_file}")
+    init_fake_file_system(settings.fake_file_server_file)
     logger.info(f"Fake file server loaded. Number of files: {len(files)}")
     yield
     print("unloaded on shutdown")
@@ -118,7 +118,7 @@ async def simulate_read_file(request: Request, request_id: str, size: int, start
     if not client_disconnected and last_chunk_size > 0:
         # Returns the remai ning bytes to complete the requested size
         logger.info(
-            f"[{request_id}]Sending chunk {math.floor(remaining/chunk_size)}")
+            f"[{request_id}] Sending chunk {math.floor(remaining/chunk_size)}")
         yield randbytes(last_chunk_size)
 
 
