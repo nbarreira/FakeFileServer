@@ -102,7 +102,7 @@ async def simulate_read_file(request: Request, request_id: str, size: int, start
     for i in range(math.floor(remaining/chunk_size)):
         logger.info(f"[{request_id}] Sending chunk {i}")
 
-        # sleep(1) # Uncomment this line to slow down the download
+        sleep(0.05) # Uncomment this line to slow down the download
 
         # Checks if the client has paused/cancelled the download
         if await request.is_disconnected():
